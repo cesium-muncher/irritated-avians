@@ -168,7 +168,7 @@ function love.update(dt)
         return
     end
     local explodingrnplswait = false -- makes acceleration not cause block breaking, required for explosions to look cool
-    screenshake = math.max(screenshake - dt, 0)
+    screenshake = math.max(screenshake*dt, 0)
     parlib.particlestep(dt)
     world:update(dt)
     for bi, bird in pairs(birds) do
@@ -220,7 +220,7 @@ function love.update(dt)
                 end
                 if bird[2] == "j" then
                     activatememoryleak = true
-                    screenshake = 1
+                    screenshake = screenshake + 5
                     print("impending doom")
                     for i=1, 60 do
                         parlib.boom(bod:getPosition())
