@@ -168,7 +168,7 @@ function love.update(dt)
         return
     end
     local explodingrnplswait = false -- makes acceleration not cause block breaking, required for explosions to look cool
-    screenshake = math.max(screenshake*dt, 0)
+    screenshake = math.max(screenshake - dt*screenshake - dt, 0)
     parlib.particlestep(dt)
     world:update(dt)
     for bi, bird in pairs(birds) do
@@ -193,6 +193,7 @@ function love.update(dt)
                     local strengthmult = 2
                     -- explosion
                     sfxlib.bird("black", "explode")
+                    screenshake = screenshake + 0.2
                     for i=1, 6 do
                         parlib.boom(bod:getPosition())
                     end
@@ -220,7 +221,7 @@ function love.update(dt)
                 end
                 if bird[2] == "j" then
                     activatememoryleak = true
-                    screenshake = screenshake + 5
+                    screenshake = screenshake + 1
                     print("impending doom")
                     for i=1, 60 do
                         parlib.boom(bod:getPosition())
@@ -555,7 +556,7 @@ function love.draw()
     if w/h > 2.666 then
         love.window.setMode(h * 2.666, h, {resizable = true})
     end
-    local screenshakemult = 25
+    local screenshakemult = csm/10
     sfxlib.updatebgmusic()
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.2,0.7,1)
