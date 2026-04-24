@@ -202,7 +202,7 @@ function love.update(dt)
                         local ex, ey = explbody:getPosition()
                         local dist = math.sqrt((bx-ex)^2 + (by-ey)^2) * 4 - 300
                         dist = math.max(dist, 50)
-                        print("pdist : " .. dist)
+                        --print("pdist : " .. dist)
                         local strength = 2^(-dist/distmult) * 200 * strengthmult -- percent
                         local vecx, vecy = (ex - bx)/dist * strength, (ey - by)/dist * strength
                         local oldx, oldy = explbody:getLinearVelocity()
@@ -213,16 +213,16 @@ function love.update(dt)
                     for wi, wood in pairs(blocks) do
                         local explbody = wood[4]
                         local explfixtr = wood[5]
-                        local dnsmlt = 1/explfixtr:getDensity()
+                        local dnsmlt = (1/explfixtr:getDensity())^1
                         local ex, ey = explbody:getPosition()
                         local dist = math.sqrt((bx-ex)^2 + (by-ey)^2) * 4 - 300
                         dist = math.max(dist, 50)
-                        print("wdist : " .. dist)
+                        --print("wdist : " .. dist)
                         local strength = 2^(-dist/distmult) * 200 * strengthmult -- percent
                         local vecx, vecy = (ex - bx)/dist * strength *dnsmlt, (ey - by)/dist * strength *dnsmlt
                         local oldx, oldy = explbody:getLinearVelocity()
                         explbody:setLinearVelocity(oldx + vecx, oldy + vecy)
-                        local angvel = explbody:getAngularVelocity()
+                        local angvel = explbody:getAngularVelocity() * dnsmlt
                         explbody:setAngularVelocity(angvel + math.random(-15,15))
                     end
                     bird[4]:setPosition(0, 80000)
