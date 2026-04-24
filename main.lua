@@ -200,22 +200,30 @@ function love.update(dt)
                     for pi, pig in pairs(pigs) do
                         local explbody = pig[3]
                         local ex, ey = explbody:getPosition()
-                        local dist = math.sqrt((bx-ex)^2 + (by-ey)^2)
+                        local dist = math.sqrt((bx-ex)^2 + (by-ey)^2) * 4 - 300
+                        dist = math.max(dist, 50)
+                        print("pdist : " .. dist)
                         local strength = 2^(-dist/distmult) * 200 * strengthmult -- percent
                         local vecx, vecy = (ex - bx)/dist * strength, (ey - by)/dist * strength
                         local oldx, oldy = explbody:getLinearVelocity()
                         explbody:setLinearVelocity(oldx + vecx, oldy + vecy)
+                        local angvel = explbody:getAngularVelocity()
+                        explbody:setAngularVelocity(angvel + math.random(-15,15))
                     end
                     for wi, wood in pairs(blocks) do
                         local explbody = wood[4]
                         local explfixtr = wood[5]
                         local dnsmlt = 1/explfixtr:getDensity()
                         local ex, ey = explbody:getPosition()
-                        local dist = math.sqrt((bx-ex)^2 + (by-ey)^2)
+                        local dist = math.sqrt((bx-ex)^2 + (by-ey)^2) * 4 - 300
+                        dist = math.max(dist, 50)
+                        print("wdist : " .. dist)
                         local strength = 2^(-dist/distmult) * 200 * strengthmult -- percent
                         local vecx, vecy = (ex - bx)/dist * strength *dnsmlt, (ey - by)/dist * strength *dnsmlt
                         local oldx, oldy = explbody:getLinearVelocity()
                         explbody:setLinearVelocity(oldx + vecx, oldy + vecy)
+                        local angvel = explbody:getAngularVelocity()
+                        explbody:setAngularVelocity(angvel + math.random(-15,15))
                     end
                     bird[4]:setPosition(0, 80000)
                     bird[4]:setLinearVelocity(0, 9000)
@@ -224,12 +232,15 @@ function love.update(dt)
                 if bird[2] == "j" then
                     activatememoryleak = true
                     screenshake = screenshake + 1
-                    print("impending doom")
+                    print("memory leak")
                     for i=1, 60 do
                         parlib.boom(bod:getPosition())
                         parlib.poof(bod:getPosition())
                         parlib.smoke(bod:getPosition())
                     end
+                    bird[4]:setPosition(0, 80000)
+                    bird[4]:setLinearVelocity(0, 9000)
+                    birds[bi] = nil
                 end
                 
             end
