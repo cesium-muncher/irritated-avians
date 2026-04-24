@@ -328,7 +328,7 @@ function love.update(dt)
         end
         local vx, vy = following[4]:getLinearVelocity()
         local v = math.sqrt(vx^2 + vy^2)
-        if v < 25 or bx > 1600 then
+        if v < 25 or bx > 1600 or by > 1000 then
             following = nil
         end
     else
@@ -346,6 +346,10 @@ function love.mousepressed()
     if paused == false then
         if buttondetectdefaultpreset(x, y, 55*screensizemult, 55*screensizemult, screensizemult) then
             paused = true
+            return
+        end
+        if buttondetectdefaultpreset(x, y, 155*screensizemult, 55*screensizemult, screensizemult) and following ~= nil and camerax > 0 then
+            following = nil
             return
         end
         for _, bird in pairs(birds) do
@@ -578,11 +582,19 @@ function love.draw()
     love.graphics.draw(canvas, -camerax * csm+ (screenshake*math.random(-screenshakemult, screenshakemult)), -cameray + (screenshake*math.random(-screenshakemult, screenshakemult)), 0, 1, 1)
     local x, y = love.mouse.getPosition()
     love.graphics.setColor(1, 1, 1, 0.5)
-
+    
     if paused == false then
-        defaultbuttoncolor(x, y, 55*csm, 55*csm, csm)
+        defaultbuttoncolor(x, y, 55*csm, 55*csm, csm) -- pause
     end
     love.graphics.draw(tex_btns.pause, 55 * csm, 55 * csm, 0, 0.75 * csm, 0.75 * csm, texlib.truebtnsiz()/2, texlib.truebtnsiz()/2)
+    if paused == false then
+        defaultbuttoncolor(x, y, 155*csm, 55*csm, csm) -- stop tracking
+    end
+    if following ~= nil and camerax > 0 then
+        love.graphics.draw(tex_btns.stop_tracking, 155 * csm, 55 * csm, 0, 0.75 * csm, 0.75 * csm, texlib.truebtnsiz()/2, texlib.truebtnsiz()/2)
+    end
+    
+    
     --163*0.3 + 15 148
     --cam:setScale(2)
 
