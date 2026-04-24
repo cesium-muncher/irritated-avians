@@ -42,7 +42,7 @@ world = love.physics.newWorld(0, 200)
 local currentbirdid = 1
 local smoothbirdmovement = 1
 local smoothbirdmovementspeed = 2
-local level = 1
+local level = 6
 local endlevel = false
 local levlib = require "levellibrary"
 local texlib = require "texturelibrary"
@@ -193,7 +193,7 @@ function love.update(dt)
                     local strengthmult = 2
                     -- explosion
                     sfxlib.bird("black", "explode")
-                    screenshake = screenshake + 0.2
+                    screenshake = screenshake + 1
                     for i=1, 6 do
                         parlib.boom(bod:getPosition())
                     end
@@ -208,10 +208,12 @@ function love.update(dt)
                     end
                     for wi, wood in pairs(blocks) do
                         local explbody = wood[4]
+                        local explfixtr = wood[5]
+                        local dnsmlt = 1/explfixtr:getDensity()
                         local ex, ey = explbody:getPosition()
                         local dist = math.sqrt((bx-ex)^2 + (by-ey)^2)
                         local strength = 2^(-dist/distmult) * 200 * strengthmult -- percent
-                        local vecx, vecy = (ex - bx)/dist * strength, (ey - by)/dist * strength
+                        local vecx, vecy = (ex - bx)/dist * strength *dnsmlt, (ey - by)/dist * strength *dnsmlt
                         local oldx, oldy = explbody:getLinearVelocity()
                         explbody:setLinearVelocity(oldx + vecx, oldy + vecy)
                     end

@@ -41,7 +41,7 @@ function ll.decode(level)
             local pbody = love.physics.newBody(world, x, y, "dynamic")
             local pfix = love.physics.newFixture(pbody, pshape, 1)
             pfix:setFriction(0.9)
-            pfix:setDensity(3)
+            pfix:setDensity(10)
             pfix:setRestitution(0.01)
             local newentry = {sx, sy, pshape, pbody, pfix, otype}
             table.insert(blocks, newentry)
@@ -87,7 +87,7 @@ function ll.decode(level)
                         density = 10
                     elseif bird == "black" then
                         size = 30
-                        density = 3
+                        density = 0.01
                     elseif bird == "j" then
                         size = 25
                         density = 3
