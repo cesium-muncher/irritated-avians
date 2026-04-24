@@ -42,5 +42,5 @@ replace ? with level number
 
 #################
 
-testing tips:
+pro testing tip:
 set the value of "level" in main.lua (line 45) to whatever your level number is so you immediately go to it
