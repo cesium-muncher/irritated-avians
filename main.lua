@@ -42,7 +42,7 @@ world = love.physics.newWorld(0, 200)
 local currentbirdid = 1
 local smoothbirdmovement = 1
 local smoothbirdmovementspeed = 2
-local level = 6
+local level = 1
 local endlevel = false
 local levlib = require "levellibrary"
 local texlib = require "texturelibrary"
@@ -156,7 +156,7 @@ function menubtndct(x, y, bx, by)
 end
 
 function lerp(v1, v2, percent)
-    return (v2 * percent) + (v1 * (1-percent))
+    return v1+(v2-v1)*percent
 end
 
 function love.update(dt)
@@ -315,7 +315,7 @@ function love.update(dt)
         -- replaced cuz its frame dependent and i made a function for it
 
         -- value = lerp(value, target, 1 - exp(-speed * deltaTime)
-        camerax = lerp(camerax, bx-400, 0.9 ^ dt)
+        camerax = lerp(camerax, bx-400, 1-0.001^dt)
 
         if camerax < 0 then
             camerax = 0
@@ -332,8 +332,7 @@ function love.update(dt)
             following = nil
         end
     else
-        camerax = camerax * 0.98
-        cameray = cameray * 0.98
+        camerax = lerp(camerax, 0, 1-0.001^dt)
     end
 end
 
