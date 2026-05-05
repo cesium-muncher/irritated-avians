@@ -92,6 +92,7 @@ function spawnlevel(number)
     if exists == nil then
         name = "levels/level_win"
         level = 99999
+        smoothbirdmovementspeed=30
     end
     local level = require(name)
     levlib.decode(level)

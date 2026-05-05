@@ -1,22 +1,33 @@
+local birds = {"birds"}
+for i=1, 100 do
+    table.insert(birds, "j")
+    table.insert(birds, "red")
+    table.insert(birds, "yellow")
+    table.insert(birds, "black")
+end
+
 return {
-    {"birds", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red"},
+    birds,
 
-    {"terrain", 400, -10010, 150, 25}, -- purgatory pig
-    {"pig", 400, -10050, 25, 25},
+    {"terrain", 400, 90-10000, 150, 25}, -- purgatory pig
+    {"pig", 400, 50-10000, 25, 25},
+    {"terrain", 400, 00-10000, 150, 25},
+    {"terrain", 350, 50-10000, 25, 150},
+    {"terrain", 450, 50-10000, 25, 150},
 
-    {"bouncywood", 300, 500, 100, 25},
-    {"bouncywood", 260, 425, 25, 100},
-    {"bouncywood", 340, 425, 25, 100}, -- w
-    {"bouncywood", 300, 425, 25, 100},
+    {"stone", 300, 487, 100, 25},
+    {"stone", 260, 425, 25, 100},
+    {"stone", 340, 425, 25, 100}, -- w
+    {"stone", 300, 425, 25, 100},
 
-    {"wood", 410, 500, 100, 25}, -- i
-    {"bouncywood", 410, 375, 100, 25},
-    {"bouncywood", 410, 440, 25, 100},
+    {"stone", 410, 487, 100, 25}, -- i
+    {"stone", 410, 362, 100, 25},
+    {"stone", 410, 425, 25, 100},
 
 
-    {"bouncywood", 520, 400, 100, 25},
-    {"bouncywood", 560, 465, 25, 100}, -- n
-    {"bouncywood", 480, 465, 25, 100}, -- n
+    {"stone", 520, 387, 100, 25},
+    {"stone", 560, 450, 25, 100}, -- n
+    {"stone", 480, 450, 25, 100}, -- n
 
 }
 
