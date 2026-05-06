@@ -10,7 +10,7 @@ return {
   output = 'dist', -- output location for your game, defaults to $SAVE_DIRECTORY
   version = '1', -- 'version' of your game, used to name the folder in output
   love = '11.5', -- version of LÖVE to use, must match github releases
-  ignore = {'dist', 'ignoreme.txt'}, -- folders/files to ignore in your project
+  ignore = {'dist', 'ignoreme.txt', 'j.jpg', 'textures/birds/j.jpg'}, -- folders/files to ignore in your project
   icon = 'textures/ico_256x.png', -- 256x256px PNG icon for game, will be converted for you
   
   -- optional settings:
