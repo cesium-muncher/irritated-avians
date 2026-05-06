@@ -422,8 +422,7 @@ function love.mousepressed()
             return
         end
         if menubtndct(x, y, 0, 0.5) then
-            -- something?
-            love.system.openURL("http://google.com/")
+            love.system.openURL("https://github.com/cesium-muncher/irritated-avians/releases")
             return
         end
     end
@@ -535,6 +534,7 @@ function cameradraw()
     mousex = mousex + camerax
     local vectorx, vectory = mousex - 95, mousey - 455
     love.graphics.setColor(1,0,0)
+    love.graphics.setLineWidth(2)
     if currentbirdid == smoothbirdmovement and paused == false then
         love.graphics.line(95 * csm, 455 * csm, 95 * csm + (vectorx * 600 * csm), 455 * csm + (vectory * 600 * csm))
     end
