@@ -169,7 +169,7 @@ function love.update(dt)
         return
     end
     local explodingrnplswait = false -- makes acceleration not cause block breaking, required for explosions to look cool
-    screenshake = math.max(screenshake - dt*screenshake - dt, 0)
+    screenshake = math.max(screenshake - dt, 0)
     parlib.particlestep(dt)
     world:update(dt)
     for bi, bird in pairs(birds) do
@@ -232,7 +232,7 @@ function love.update(dt)
                 end
                 if bird[2] == "j" then
                     activatememoryleak = true
-                    screenshake = screenshake + 1
+                    screenshake = screenshake + 3
                     print("memory leak")
                     for i=1, 60 do
                         parlib.boom(bod:getPosition())
@@ -499,7 +499,7 @@ function cameradraw()
         
         
     end
-    love.graphics.setColor(0.7,0.5,0)
+    love.graphics.setColor(1,0,1)
     for _, block in pairs(blocks) do
         local body = block[4]
         local shape = block[3]
@@ -508,7 +508,7 @@ function cameradraw()
         if block[6] == "wood" then
             love.graphics.setColor(0.7,0.5,0)
         elseif block[6] == "terrain" then
-            love.graphics.setColor(0.3,0.21,0.13)
+            love.graphics.setColor(0.35,0.69,0.36)
         elseif block[6] == "bouncy" then
             love.graphics.setColor(0.2,0.1, 1)
         elseif block[6] == "bouncywood" then
@@ -576,7 +576,7 @@ function love.draw()
     if w/h > 2.666 then
         love.window.setMode(h * 2.666, h, {resizable = true})
     end
-    local screenshakemult = csm/10
+    local screenshakemult = csm*5
     sfxlib.updatebgmusic()
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.2,0.7,1)
