@@ -441,6 +441,9 @@ function love.keypressed(k)
             love.window.setFullscreen(false)
         end
     end
+    if k == "escape" then
+        paused = not paused
+    end
 end
 
 local csm = screensizemult -- canvas size mult
