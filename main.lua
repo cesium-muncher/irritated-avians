@@ -83,7 +83,7 @@ function spawnlevel(number)
     blocks = {}
     following = nil
     parlib.clearall()
-
+    screenshake = 0
     -- make new level
     
     print("loading level")
@@ -495,7 +495,7 @@ function cameradraw()
         local yscale = 1/txsizey * r * 2
         love.graphics.circle("fill", x * csm, y * csm, r * csm)
         
-        love.graphics.draw(tex_birds[color], x * csm, y * csm, angle, xscale * csm, yscale * csm, txsizex/2, txsizey/2)
+        love.graphics.draw(tex_birds[color], x * csm, y * csm, angle, -xscale * csm, yscale * csm, txsizex/2, txsizey/2)
         
         
     end
@@ -566,6 +566,7 @@ memoryleaklist = {"leak"} -- j bird "ability"
 memoryleaknum = 1
 activatememoryleak = false
 
+local scrshkx, scrshky = 0, 0
 
 function love.draw()
     local w, h = love.window.getMode()
@@ -582,7 +583,10 @@ function love.draw()
     love.graphics.clear(0.2,0.7,1)
     cameradraw()
     love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(canvas, -camerax * csm+ (screenshake*math.random(-screenshakemult, screenshakemult)), -cameray + (screenshake*math.random(-screenshakemult, screenshakemult)), 0, 1, 1)
+    if paused == false then
+        scrshkx, scrshky = screenshake*math.random(-screenshakemult, screenshakemult), screenshake*math.random(-screenshakemult, screenshakemult)
+    end
+    love.graphics.draw(canvas, -camerax * csm+ scrshkx, -cameray + scrshky, 0, 1, 1)
     local x, y = love.mouse.getPosition()
     love.graphics.setColor(1, 1, 1, 0.5)
     
