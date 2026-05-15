@@ -515,6 +515,8 @@ function cameradraw()
             love.graphics.setColor(0.5,0.2, 1)
         elseif block[6] == "stone" then
             love.graphics.setColor(0.5,0.5, 0.5)
+        elseif block[6] == "icy" then
+            love.graphics.setColor(0.3,0.9, 1)
         end
         local p = {shape:getPoints()}
         local p2 = {}

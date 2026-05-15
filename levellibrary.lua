@@ -75,6 +75,15 @@ function ll.decode(level)
             local newentry = {sx, sy, pshape, pbody, pfix, otype}
             table.insert(blocks, newentry)
         end
+        if otype == "icy" then
+            local pshape = love.physics.newRectangleShape(sx, sy)
+            local pbody = love.physics.newBody(world, x, y, "static")
+            local pfix = love.physics.newFixture(pbody, pshape, 1)
+            pfix:setFriction(0.05)
+            
+            local newentry = {sx, sy, pshape, pbody, pfix, otype}
+            table.insert(blocks, newentry)
+        end
         if otype == "birds" then
             for i, bird in pairs(object) do
                 if i ~= 1 and bird ~= "" then
